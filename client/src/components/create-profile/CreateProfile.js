@@ -1,46 +1,76 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-import SelectListGroup from '../common/SelectListGroup';
-import { createProfile } from '../../actions/profileActions';
-import { Select } from 'antd';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import TextFieldGroup from "../common/TextFieldGroup";
+import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
+import InputGroup from "../common/InputGroup";
+import SelectListGroup from "../common/SelectListGroup";
+import { createProfile } from "../../actions/profileActions";
+import { Select } from "antd";
 
 const Option = Select.Option;
 
 class CreateProfile extends Component {
-  handleChange = (value) => {
+  handleChange = value => {
     this.setState({ skills: value });
     console.log(`selected ${value}`);
-  }
-  renderTags(){
-    const tags = ['HTML', 'CSS', 'JAVASCRIPT', 'PHP', 'MYSQL', 'NODE', 'ANGULAR', 'REACT', 'PYTHON', 'DJANGO', 'LARAVEL', 'CODEIGNITER','ANSYS','CATIA','AUTOCAD','MATLAB','COMMSIM','XILINK','MULTISIM','MACHINE LEARNING','JAVA','SQL','SKETCHUP','REVIT','LUMION','PHOTOSHOP','3DS MAX','ANACONDA','JUPYTER','ANDROID'];
+  };
+  renderTags() {
+    const tags = [
+      "HTML",
+      "CSS",
+      "JAVASCRIPT",
+      "PHP",
+      "MYSQL",
+      "NODE",
+      "ANGULAR",
+      "REACT",
+      "PYTHON",
+      "DJANGO",
+      "LARAVEL",
+      "CODEIGNITER",
+      "ANSYS",
+      "CATIA",
+      "AUTOCAD",
+      "MATLAB",
+      "COMMSIM",
+      "XILINK",
+      "MULTISIM",
+      "MACHINE LEARNING",
+      "JAVA",
+      "SQL",
+      "SKETCHUP",
+      "REVIT",
+      "LUMION",
+      "PHOTOSHOP",
+      "3DS MAX",
+      "ANACONDA",
+      "JUPYTER",
+      "ANDROID"
+    ];
     return tags.map(tag => {
-      return (<Option key={tag}>{tag}</Option>);
-    })
+      return <Option key={tag}>{tag}</Option>;
+    });
   }
   constructor(props) {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      handle: '',
-      company: '',
-      website: '',
-      location: '',
-      status: '',
+      handle: "",
+      company: "",
+      website: "",
+      location: "",
+      status: "",
       skills: [],
       tags: [],
-      githubusername: '',
-      bio: '',
-      twitter: '',
-      facebook: '',
-      linkedin: '',
-      youtube: '',
-      instagram: '',
+      githubusername: "",
+      bio: "",
+      twitter: "",
+      facebook: "",
+      linkedin: "",
+      youtube: "",
+      instagram: "",
       errors: {}
     };
 
@@ -79,8 +109,6 @@ class CreateProfile extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
-  
 
   render() {
     const { errors, displaySocialInputs } = this.state;
@@ -140,15 +168,15 @@ class CreateProfile extends Component {
 
     // Select options for status
     const options = [
-      { label: '* Select Professional Status', value: 0 },
-      { label: 'Developer', value: 'Developer' },
-      { label: 'Junior Developer', value: 'Junior Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
-      { label: 'Manager', value: 'Manager' },
-      { label: 'Student or Learning', value: 'Student or Learning' },
-      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
-      { label: 'Intern', value: 'Intern' },
-      { label: 'Other', value: 'Other' }
+      { label: "* Select Professional Status", value: 0 },
+      { label: "Developer", value: "Developer" },
+      { label: "Junior Developer", value: "Junior Developer" },
+      { label: "Senior Developer", value: "Senior Developer" },
+      { label: "Manager", value: "Manager" },
+      { label: "Student or Learning", value: "Student or Learning" },
+      { label: "Instructor or Teacher", value: "Instructor or Teacher" },
+      { label: "Intern", value: "Intern" },
+      { label: "Other", value: "Other" }
     ];
 
     return (
@@ -203,16 +231,18 @@ class CreateProfile extends Component {
                   error={errors.location}
                   info="City or city & state suggested (eg. Boston, MA)"
                 />
-              <Select
-                mode="multiple"
-                style={{ width: '100%' }}
-                placeholder="Please select"
-                defaultValue={[]}
-                onChange={this.handleChange}
-                value={this.state.skills}
-              >
-                {this.renderTags()}
-              </Select>
+                Skills
+                <Select
+                  mode="multiple"
+                  style={{ width: "100%" }}
+                  placeholder="Please select"
+                  defaultValue={[]}
+                  onChange={this.handleChange}
+                  value={this.state.skills}
+                  style={{ marginBottom: "20px" }}
+                >
+                  {this.renderTags()}
+                </Select>
                 {/* <TextFieldGroup
                   placeholder="* Skills"
                   name="skills"
@@ -238,7 +268,6 @@ class CreateProfile extends Component {
                   error={errors.bio}
                   info="Tell us a little about yourself"
                 />
-
                 <div className="mb-3">
                   <button
                     type="button"
@@ -278,6 +307,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
-);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile));
