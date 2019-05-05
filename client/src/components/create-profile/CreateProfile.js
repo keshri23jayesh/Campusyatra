@@ -18,7 +18,7 @@ class CreateProfile extends Component {
     console.log(`selected ${value}`);
   }
   renderTags(){
-    const tags = ['HTML', 'CSS', 'JAVASCRIPT', 'PHP', 'MYSQL', 'NODE', 'ANGULAR', 'REACT', 'PYTHON', 'DJANGO', 'LARAVEL', 'CODEIGNITER'];
+    const tags = ['HTML', 'CSS', 'JAVASCRIPT', 'PHP', 'MYSQL', 'NODE', 'ANGULAR', 'REACT', 'PYTHON', 'DJANGO', 'LARAVEL', 'CODEIGNITER','ANSYS','CATIA','AUTOCAD','MATLAB','COMMSIM','XILINK','MULTISIM','MACHINE LEARNING','JAVA','SQL','SKETCHUP','REVIT','LUMION','PHOTOSHOP','3DS MAX','ANACONDA','JUPYTER','ANDROID'];
     return tags.map(tag => {
       return (<Option key={tag}>{tag}</Option>);
     })
@@ -32,7 +32,7 @@ class CreateProfile extends Component {
       website: '',
       location: '',
       status: '',
-      skills: '',
+      skills: [],
       tags: [],
       githubusername: '',
       bio: '',
